@@ -1,0 +1,38 @@
+﻿@model UitgaveCreateViewModel
+
+<form asp-controller="Uitgave" asp-action="create" method="post" enctype="multipart/form-data">
+    <div>
+        <label asp-for="Beschrijving"></label>
+        <input asp-for="Beschrijving" />
+        <span class="text-danger" asp-validation-for="Beschrijving"></span>
+    </div>
+    <div>
+        <label asp-for="Datum"></label>
+        <input asp-for="Datum" />
+        <span class="text-danger" asp-validation-for="Datum"></span>
+    </div>
+    <div>
+        <label asp-for="Soort"></label>
+        <select class="form-control" asp-items="@Model.Soorten" asp-for="Soort"></select>
+        <span class="text-danger" asp-validation-for="Soort"></span>
+    </div>
+    <div>
+        <label asp-for="Bedrag"></label>
+        <input asp-for="Bedrag" />
+        <span class="text-danger" asp-validation-for="Bedrag"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Photo"></label>
+        <input asp-for="Photo" class="form-control" />
+        <span class="text-danger" asp-validation-for="Photo"></span>
+
+    </div>
+    <div class="form-group">
+        <label asp-for="Photo2"></label>
+        <input asp-for="Photo2" class="form-control" />
+        <span class="text-danger" asp-validation-for="Photo2"></span>
+
+    </div>
+    <button class="btn btn-primary" type="submit">Create</button>
+</form>
+<a asp-controller="Uitgave" asp-action="Index">Terug naar overzicht</a>

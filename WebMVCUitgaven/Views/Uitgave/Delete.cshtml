@@ -1,0 +1,6 @@
+﻿@model UitgaveDeleteViewModel
+<p>Bent u zeker dat u <strong>@Model.Beschrijving</strong>wilt verwijderen</p>
+<form asp-controller="Uitgave" asp-action="ConfirmDelete" asp-route-id="@Model.Id" method="post">
+    <button class="btn btn-danger">Delete</button>
+</form>
+<a asp-controller="Uitgave" asp-action="Index">terug naar overzicht</a>

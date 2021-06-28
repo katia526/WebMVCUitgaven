@@ -1,0 +1,100 @@
+﻿@model IEnumerable<UitgaveListViewModel>
+
+<a asp-area="" asp-controller="Uitgave" asp-action="Create">Add uitgave</a>
+
+<h1>Uitgaven</h1>
+
+@if (Model == null || Model.Count() == 0)
+{
+    <p> ze zijn geen uitgaven</p>
+}
+@{ 
+
+    var Totaal = 0;
+}
+
+<table>
+    <thead>
+        <tr>
+            <th style="width:200px">Pijl</th>
+            <th style="width:200px">Beschrijving</th>
+            <th style="width:200px">Datum</th>
+            <th style="width:200px">Soort</th>
+            <th style="width:200px">Bedrag</th>
+            <th style="width:200px">Extra</th>
+            <th style="width:200px">Koper</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @{
+            int tot = 0;
+
+            foreach (var item in Model)
+            {
+                char ingaveType;
+                string ingaveClass;
+                if (item.Soort == "Uitgave")
+                {
+                    ingaveType = '↓';
+                    ingaveClass = "alert-danger";
+                    Totaal -= item.Bedrag;
+                }
+                else
+                {
+
+
+                    ingaveType = '↑';
+                    ingaveClass = "alert-success";
+                    Totaal += item.Bedrag;
+                }
+
+                <tr class="@ingaveClass">
+                    <td>@ingaveType</td>
+                    <td>@item.Beschrijving</td>
+                    <td>@item.Datum</td>
+                    <td>@item.Soort</td>
+                    <td>@item.Bedrag</td>
+
+                    <td>@item.Extra</td>
+                    <td>@item.Koper</td>
+
+                    <td>
+                        <a asp-controller="uitgave" asp-action="detail" asp-route-id="@item.Id">
+                            <input type="button" class="btn btn-primary" value="Detail" />
+                        </a>
+                    </td>
+
+                    <td>
+                        <a asp-controller="uitgave" asp-action="edit" asp-route-id="@item.Id">
+                            <input type="button" class="btn btn-primary" value="Edit" />
+                        </a>
+                    </td>
+
+                    <td>
+                        <a asp-controller="uitgave" asp-action="delete" asp-route-id="@item.Id">
+                            <input type="button" class="btn btn-danger" value="Delete" />
+                        </a>
+                    </td>
+                    
+                </tr>
+            }
+    <tr>
+        @{ 
+        @if (@Totaal < 0)
+        {
+            var ingaveClass = "alert-danger";
+        }
+        else
+        {
+            var ingaveClass = "alert-success";
+        }
+        <tr class="ingaveClass">
+        <th style="Width:600px"> het totaal bedraagt : </th>
+        <th style="Width:400px">@Totaal</th>
+        </tr>
+            }
+    </tr>
+        }
+    </tbody>
+</table>

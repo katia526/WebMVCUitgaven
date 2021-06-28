@@ -1,0 +1,25 @@
+﻿@model UitgaveDetailViewModel
+
+<p><strong>Pijl</strong></p>
+
+
+<strong>Beschrijving</strong>
+<p>@Model.Beschrijving</p>
+
+<strong>Datum</strong>
+<p>@Model.Datum</p>
+
+<strong>Soort</strong>
+<p>@Model.Soort</p>
+
+<strong>Bedrag</strong>
+<p>@Model.Bedrag</p>
+
+
+<strong>Photo</strong>
+<p><img src="@Model.PhotoUrl" /></p>
+
+<strong>Photo2</strong>
+<p><img src="@Model.PhotoUrl2" /></p>
+
+<a asp-controller="Uitgave" asp-action="Index">Terug naar overzicht</a>
